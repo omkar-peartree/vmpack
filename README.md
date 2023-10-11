@@ -26,7 +26,7 @@ Disclaimer: This project is still in experimental stages, for example clipboard 
 - Tested with Ubuntu and Arch based distros
 - Docker installed and user added to docker group via `sudo gpasswd -a $USER docker`. Used for building images
 - Dependencies for Ubuntu-based distros `sudo apt install git libguestfs-tools socat virt-manager`
-- Dependencies for Arch-based distros `sudo pacman -S git guestfs-tools socat virt-manager qemu-full`
+- Dependencies for Arch-based distros `sudo pacman -S docker-buildx git guestfs-tools qemu-full socat virt-manager`
 - Reboot your system or reload your session
 
 ## Get started
@@ -34,8 +34,8 @@ Disclaimer: This project is still in experimental stages, for example clipboard 
 1. Install vmpack
 ```
 cd ~/
-git clone git@github.com:Openw3b/vmpack.git .vmpack
-ln -s ~/.vmpack/vmpack ~/.local/bin/vmpack
+git clone git@github.com:Openw3b/vmpack.git ~/vmpack
+export PATH=$PATH:/home/$USER/vmpack
 ```
 
 2. Build and install an App [Example]

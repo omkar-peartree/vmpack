@@ -1,5 +1,5 @@
 # Build tools
-FROM ubuntu:focal AS buildctr  
+FROM ubuntu:jammy AS buildctr  
 
 RUN mkdir /build
 WORKDIR /build
@@ -8,13 +8,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git build-essential libgtk
 RUN git clone https://github.com/openw3b/dragon; cd dragon; make
 
 # Setup base env
-FROM ubuntu:focal
+FROM ubuntu:jammy
 
 RUN apt-get update
+RUN apt-get -y --no-install-recommends upgrade
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y dhcpcd5 util-linux systemd systemd-sysv
 RUN DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y xorg
 RUN apt-get install -y --no-install-recommends spice-vdagent i3-wm
-RUN apt-get install -y --no-install-recommends xterm sudo pulseaudio
 RUN systemctl disable gdm
 RUN echo "user ALL = NOPASSWD: /usr/sbin/poweroff" >> /etc/sudoers
 
